@@ -1,0 +1,2266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn with Shafique Baloch - Computer Courses</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --accent: #8b5cf6;
+            --light: #ffffff;
+            --dark: #1e293b;
+            --success: #10b981;
+            --background: #f0f9ff;
+            --text: #333;
+            --card-bg: #ffffff;
+            --header-bg: #1e3a8a;
+            --footer-bg: #1e3a8a;
+            --nav-space: 20px;
+        }
+
+        body.dark-mode {
+            --background: #0f172a;
+            --text: #e2e8f0;
+            --card-bg: #1e293b;
+            --header-bg: #0f172a;
+            --footer-bg: #0f172a;
+            --primary: #3b82f6;
+            --dark: #cbd5e1;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .language-toggle:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        /* Login Page */
+        .login-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .login-container {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+        }
+
+        .login-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-logo .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .login-logo .logo-img {
+            width: 50px;
+            height: 50px;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 28px;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .login-logo .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .login-logo .logo-text span {
+            color: var(--secondary);
+        }
+
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            background-color: var(--card-bg);
+            color: var(--text);
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary);
+            outline: none;
+        }
+
+        .login-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            background-color: #2563eb;
+        }
+
+        .login-message {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            display: none;
+        }
+
+        .login-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .signup-option {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--text);
+        }
+
+        .signup-option a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .signup-option a:hover {
+            text-decoration: underline;
+        }
+
+        .google-login-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            color: #333;
+            border: 1px solid #ddd;
+            padding: 12px 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .google-login-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        .google-login-btn i {
+            margin-right: 10px;
+            color: #DB4437;
+            font-size: 1.2rem;
+        }
+
+        .guest-login-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .guest-login-btn:hover {
+            background-color: #7c3aed;
+        }
+
+        .guest-login-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Signup Page */
+        .signup-page {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .signup-container {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+        }
+
+        .signup-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .signup-form h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--primary);
+        }
+
+        .back-to-login {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--text);
+        }
+
+        .back-to-login a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-to-login a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Website (Initially Hidden) */
+        .main-website {
+            display: none;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--header-bg);
+            color: white;
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            font-weight: bold;
+            color: white;
+            font-size: 18px;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .logo-text {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: var(--nav-space);
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .theme-toggle:hover {
+            color: var(--secondary);
+        }
+
+        .profile-dropdown {
+            position: relative;
+        }
+
+        .profile-btn {
+            display: flex;
+            align-items: center;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .profile-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .profile-img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 8px;
+            object-fit: cover;
+            border: 2px solid var(--secondary);
+        }
+
+        .profile-name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 200px;
+            padding: 10px 0;
+            z-index: 1001;
+            display: none;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            color: var(--text);
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .dropdown-item i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Profile Page */
+        .profile-page {
+            display: none;
+            padding: 80px 0;
+            background-color: var(--background);
+            min-height: calc(100vh - 200px);
+        }
+
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-picture-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .profile-name-display {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-top: 10px;
+        }
+
+        .change-picture-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .change-picture-btn:hover {
+            background-color: #2563eb;
+        }
+
+        .profile-info {
+            margin-bottom: 30px;
+        }
+
+        .profile-info h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-item {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            width: 120px;
+            color: var(--primary);
+        }
+
+        .info-value {
+            flex: 1;
+        }
+
+        .back-to-home {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: #2563eb;
+        }
+
+        /* Welcome Banner */
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .welcome-banner p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .welcome-banner .urdu-text {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .contact-urgent {
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        .contact-urgent a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .contact-urgent a:hover {
+            color: #fbbf24;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30, 58, 138, 0.8), rgba(30, 58, 138, 0.9)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .hero .highlight {
+            color: #fbbf24;
+            font-weight: bold;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            animation: fadeIn 2s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #2563eb;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: var(--card-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            margin: 15px auto;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+            max-height: 400px;
+            object-fit: cover;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Applications Section */
+        .applications {
+            padding: 80px 0;
+            background-color: var(--background);
+        }
+
+        /* Courses Section */
+        .courses {
+            padding: 80px 0;
+            background-color: var(--card-bg);
+        }
+
+        .course-category {
+            margin-bottom: 60px;
+        }
+
+        .category-title {
+            color: var(--primary);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+            display: inline-block;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-img {
+            height: 200px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8fafc;
+        }
+
+        .course-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s;
+            padding: 15px;
+        }
+
+        .course-card:hover .course-img img {
+            transform: scale(1.05);
+        }
+
+        .course-content {
+            padding: 20px;
+        }
+
+        .course-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .course-content p {
+            color: var(--text);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .course-btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+
+        .course-btn:hover {
+            background-color: #2563eb;
+        }
+
+        /* Course Details Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            animation: modalFade 0.3s;
+        }
+
+        @keyframes modalFade {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #777;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--accent);
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-header h2 {
+            color: var(--primary);
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .modal-image {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .modal-contact-info {
+            background-color: var(--background);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .modal-contact-info h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .contact-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .contact-option {
+            display: flex;
+            align-items: center;
+            background-color: var(--card-bg);
+            padding: 10px 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-option:hover {
+            transform: translateY(-3px);
+            color: inherit;
+        }
+
+        .contact-option i {
+            margin-right: 10px;
+            color: var(--secondary);
+            font-size: 18px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: var(--background);
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 40px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 20px;
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--footer-bg);
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-text {
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-link:hover {
+            background-color: var(--secondary);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            width: 100%;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Profile Hero Section */
+        .profile-hero {
+            background: linear-gradient(rgba(106, 17, 203, 0.8), rgba(37, 117, 252, 0.9)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .profile-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease;
+        }
+
+        .profile-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content, .contact-content {
+                flex-direction: column;
+            }
+            
+            .about-image, .contact-info {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: var(--header-bg);
+                flex-direction: column;
+                padding: 80px 20px 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                gap: 0;
+                z-index: 999;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                border-bottom: none;
+                padding: 10px 0;
+            }
+
+            nav ul li:last-child {
+                border-bottom: none;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 15px 0;
+                font-size: 18px;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                z-index: 1000;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .contact-options {
+                flex-direction: column;
+            }
+
+            .profile-name {
+                display: none;
+            }
+
+            .language-toggle {
+                top: 80px;
+                right: 10px;
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                padding: 70px 0;
+            }
+            
+            .about, .courses, .contact {
+                padding: 60px 0;
+            }
+            
+            .logo-img {
+                width: 30px;
+                height: 30px;
+                font-size: 16px;
+            }
+            
+            .logo-text {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Toggle Button -->
+    <button class="language-toggle" id="languageToggle">
+        <i class="fas fa-language"></i>
+        <span id="languageText">اردو</span>
+    </button>
+
+    <!-- Login Page -->
+    <div class="login-page" id="loginPage">
+        <div class="login-container">
+            <div class="login-logo">
+                <div class="logo">
+                    <div class="logo-img">SB</div>
+                    <div class="logo-text" data-en="Learn with" data-ur="سیکھیں">Learn with <span data-en="Shafique" data-ur="شفیق">Shafique</span></div>
+                </div>
+                <p data-en="Enter your credentials to access the website" data-ur="ویب سائٹ تک رسائی کے لیے اپنی تفصیلات درج کریں">Enter your credentials to access the website</p>
+            </div>
+            <form class="login-form" id="loginForm">
+                <h2 data-en="Login" data-ur="لاگ ان">Login</h2>
+                <div class="form-group">
+                    <label for="email" data-en="Email Address" data-ur="ای میل ایڈریس">Email Address</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password" data-en="Password" data-ur="پاس ورڈ">Password</label>
+                    <input type="password" id="password" class="form-control" required>
+                </div>
+                <button type="submit" class="login-btn" data-en="Login" data-ur="لاگ ان">Login</button>
+                
+                <div class="signup-option">
+                    <p data-en="Don't have an account?" data-ur="کیا آپ کا اکاؤنٹ نہیں ہے؟">Don't have an account? <a href="#" id="showSignup" data-en="Sign up" data-ur="سائن اپ">Sign up</a></p>
+                </div>
+                
+                <button type="button" class="google-login-btn" id="googleLoginBtn">
+                    <i class="fab fa-google"></i> <span data-en="Continue with Google" data-ur="گوگل کے ساتھ جاری رکھیں">Continue with Google</span>
+                </button>
+                
+                <button type="button" class="guest-login-btn" id="guestLoginBtn">
+                    <i class="fas fa-user"></i> <span data-en="Continue as Guest" data-ur="مہمان کے طور پر جاری رکھیں">Continue as Guest</span>
+                </button>
+                
+                <div class="login-message" id="loginMessage" data-en="Login Successful!" data-ur="لاگ ان کامیاب!">Login Successful!</div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Page -->
+    <div class="signup-page" id="signupPage">
+        <div class="signup-container">
+            <div class="signup-logo">
+                <div class="logo">
+                    <div class="logo-img">SB</div>
+                    <div class="logo-text" data-en="Learn with" data-ur="سیکھیں">Learn with <span data-en="Shafique" data-ur="شفیق">Shafique</span></div>
+                </div>
+                <p data-en="Create your account" data-ur="اپنا اکاؤنٹ بنائیں">Create your account</p>
+            </div>
+            <form class="signup-form" id="signupForm">
+                <h2 data-en="Sign Up" data-ur="سائن اپ">Sign Up</h2>
+                <div class="form-group">
+                    <label for="signupFirstName" data-en="First Name" data-ur="پہلا نام">First Name</label>
+                    <input type="text" id="signupFirstName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupLastName" data-en="Last Name" data-ur="آخری نام">Last Name</label>
+                    <input type="text" id="signupLastName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail" data-en="Email Address" data-ur="ای میل ایڈریس">Email Address</label>
+                    <input type="email" id="signupEmail" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword" data-en="Password" data-ur="پاس ورڈ">Password</label>
+                    <input type="password" id="signupPassword" class="form-control" required>
+                </div>
+                <button type="submit" class="login-btn" data-en="Sign Up" data-ur="سائن اپ">Sign Up</button>
+                
+                <button type="button" class="google-login-btn" id="googleSignupBtn">
+                    <i class="fab fa-google"></i> <span data-en="Continue with Google" data-ur="گوگل کے ساتھ جاری رکھیں">Continue with Google</span>
+                </button>
+                
+                <button type="button" class="guest-login-btn" id="guestSignupBtn">
+                    <i class="fas fa-user"></i> <span data-en="Continue as Guest" data-ur="مہمان کے طور پر جاری رکھیں">Continue as Guest</span>
+                </button>
+                
+                <div class="back-to-login">
+                    <p data-en="Already have an account?" data-ur="کیا پہلے سے ہی اکاؤنٹ ہے؟">Already have an account? <a href="#" id="showLogin" data-en="Login" data-ur="لاگ ان">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Website -->
+    <div class="main-website" id="mainWebsite">
+        <!-- Header & Navigation -->
+        <header>
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo" id="logo">
+                        <div class="logo-img">SB</div>
+                        <div class="logo-text" data-en="Learn with Shafique" data-ur="شفیق کے ساتھ سیکھیں">Learn with Shafique</div>
+                    </div>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <nav>
+                        <ul id="navMenu">
+                            <li><a href="#home" data-en="Home" data-ur="ہوم">Home</a></li>
+                            <li><a href="#about" data-en="About" data-ur="ہمارے بارے میں">About</a></li>
+                            <li><a href="#applications" data-en="Applications" data-ur="ایپلی کیشنز">Applications</a></li>
+                            <li><a href="#courses" data-en="Courses" data-ur="کورسز">Courses</a></li>
+                            <li><a href="#ai-courses" data-en="AI Courses" data-ur="AI کورسز">AI Courses</a></li>
+                            <li><a href="#contact" data-en="Contact" data-ur="رابطہ">Contact</a></li>
+                        </ul>
+                    </nav>
+                    <div class="header-actions">
+                        <button class="theme-toggle" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <div class="profile-dropdown">
+                            <button class="profile-btn" id="profileBtn">
+                                <img src="https://via.placeholder.com/32" alt="Profile" class="profile-img" id="profileImg">
+                                <span class="profile-name" id="profileName">User</span>
+                            </button>
+                            <div class="dropdown-menu" id="dropdownMenu">
+                                <a href="#" class="dropdown-item" id="guestAccount">
+                                    <i class="fas fa-user-friends"></i> <span data-en="Guest Account" data-ur="مہمان اکاؤنٹ">Guest Account</span>
+                                </a>
+                                <a href="#" class="dropdown-item" id="addAccount">
+                                    <i class="fas fa-plus-circle"></i> <span data-en="Add Account" data-ur="اکاؤنٹ شامل کریں">Add Account</span>
+                                </a>
+                                <a href="#" class="dropdown-item" id="logoutBtn">
+                                    <i class="fas fa-sign-out-alt"></i> <span data-en="Logout" data-ur="لاگ آؤٹ">Logout</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Profile Page -->
+        <section class="profile-page" id="profilePage">
+            <div class="profile-hero">
+                <div class="container">
+                    <h1 data-en="Hallo Student!" data-ur="ہیلو طالب علم!">Hallo Student!</h1>
+                    <p data-en="Welcome to your profile page. Here you can manage your account information and track your learning progress." data-ur="آپ کے پروفائل پیج پر خوش آمدید۔ یہاں آپ اپنی اکاؤنٹ کی معلومات کو منظم کر سکتے ہیں اور اپنی سیکھنے کی پیشرفت کو ٹریک کر سکتے ہیں۔">Welcome to your profile page. Here you can manage your account information and track your learning progress.</p>
+                </div>
+            </div>
+            <div class="container">
+                <div class="profile-container">
+                    <div class="profile-header">
+                        <h2 class="section-title" data-en="My Profile" data-ur="میرا پروفائل">My Profile</h2>
+                    </div>
+                    <div class="profile-picture-section">
+                        <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-picture" id="profilePageImg">
+                        <div class="profile-name-display" id="profilePageName">User Name</div>
+                        <input type="file" id="profilePictureInput" accept="image/*" style="display: none;">
+                        <button class="change-picture-btn" id="changePictureBtn" data-en="Change Picture" data-ur="تصویر تبدیل کریں">Change Picture</button>
+                    </div>
+                    <div class="profile-info">
+                        <h3 data-en="Personal Information" data-ur="ذاتی معلومات">Personal Information</h3>
+                        <div class="info-item">
+                            <div class="info-label" data-en="Full Name:" data-ur="مکمل نام:">Full Name:</div>
+                            <div class="info-value" id="profileFullName">User Name</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label" data-en="Email:" data-ur="ای میل:">Email:</div>
+                            <div class="info-value" id="profileEmail">user@example.com</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label" data-en="Member Since:" data-ur="رکنیت از:">Member Since:</div>
+                            <div class="info-value" id="profileMemberSince">January 2023</div>
+                        </div>
+                    </div>
+                    <div class="back-to-home">
+                        <a href="#" class="back-btn" id="backToHome" data-en="Back to Home" data-ur="ہوم پر واپس جائیں">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Welcome Banner -->
+        <section class="welcome-banner">
+            <div class="container">
+                <p class="urdu-text">السلام علیکم! اس ویب سائٹ پر آپ کو مختلف کورسز سیکھنے کا موقع ملے گا۔</p>
+                <p data-en="If you want to enroll in any course, please contact us at:" data-ur="اگر آپ کسی بھی کورس میں داخلہ لینا چاہتے ہیں، تو براہ کرم ہم سے رابطہ کریں:">If you want to enroll in any course, please contact us at:</p>
+                <p class="contact-urgent">
+                    <a href="tel:03093838475"><i class="fas fa-phone"></i> 03093838475</a> | 
+                    <a href="https://wa.me/03093838475" target="_blank"><i class="fab fa-whatsapp"></i> <span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a> | 
+                    <a href="mailto:shafeeqmagsi8@gmail.com"><i class="fas fa-envelope"></i> shafeeqmagsi8@gmail.com</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <h1 data-en="Hallo Students!" data-ur="ہیلو طلباء!">Hallo Students!</h1>
+                <p data-en="Welcome to my website. Learn with Shafique Baloch - Your gateway to mastering computer skills and advancing your career." data-ur="میری ویب سائٹ پر خوش آمدید۔ شفیق بلوچ کے ساتھ سیکھیں - کمپیوٹر کی مہارتیں سیکھنے اور اپنے کیریئر کو آگے بڑھانے کا دروازہ۔"><span class="highlight" data-en="Learn with Shafique Baloch" data-ur="شفیق بلوچ کے ساتھ سیکھیں">Learn with Shafique Baloch</span> - Your gateway to mastering computer skills and advancing your career.</p>
+                <a href="#courses" class="cta-button" data-en="Explore Courses" data-ur="کورسز دریافت کریں">Explore Courses</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about">
+            <div class="container">
+                <h2 class="section-title" data-en="About Us" data-ur="ہمارے بارے میں">About Us</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3 data-en="Professional Computer Education" data-ur="پروفیشنل کمپیوٹر ایجوکیشن">Professional Computer Education</h3>
+                        <p data-en="At Learn with Shafique Baloch, we provide comprehensive computer courses designed to equip you with the skills needed in today's digital world." data-ur="سیکھیں شفیق بلوچ کے ساتھ، ہم جامع کمپیوٹر کورسز فراہم کرتے ہیں جو آج کی ڈیجیٹل دنیا میں درکار مہارتوں سے لیس کرنے کے لیے ڈیزائن کیے گئے ہیں۔">At Learn with Shafique Baloch, we provide comprehensive computer courses designed to equip you with the skills needed in today's digital world.</p>
+                        <p data-en="Our experienced instructors and hands-on approach ensure that you gain practical knowledge that you can immediately apply in real-world scenarios." data-ur="ہمارے تجربہ کار انسٹرکٹرز اور عملی نقطہ نظر یہ یقینی بناتے ہیں کہ آپ عملی علم حاصل کریں جسے آپ فوری طور پر حقیقی دنیا کے منظر نامے میں لاگو کر سکتے ہیں۔">Our experienced instructors and hands-on approach ensure that you gain practical knowledge that you can immediately apply in real-world scenarios.</p>
+                        <p data-en="Whether you're a beginner looking to learn the basics or a professional seeking to upgrade your skills, we have the right course for you." data-ur="چاہے آپ بنیادی باتیں سیکھنا چاہتے ہیں یا اپنی مہارتوں کو اپ گریڈ کرنا چاہتے ہیں، ہمارے پاس آپ کے لیے صحیح کورس ہے۔">Whether you're a beginner looking to learn the basics or a professional seeking to upgrade your skills, we have the right course for you.</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Computer Class">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Applications Section -->
+        <section class="applications" id="applications">
+            <div class="container">
+                <h2 class="section-title" data-en="Applications" data-ur="ایپلی کیشنز">Applications</h2>
+                
+                <!-- Graphic Design Applications -->
+                <div class="course-category">
+                    <h3 class="category-title" data-en="Graphic Design Applications" data-ur="گرافک ڈیزائن ایپلی کیشنز">Graphic Design Applications</h3>
+                    <div class="courses-grid">
+                        <div class="course-card">
+                            <div class="course-img">
+                                <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Adobe Photoshop">
+                            </div>
+                            <div class="course-content">
+                                <h3 data-en="Adobe Photoshop" data-ur="ایڈوب فوٹوشاپ">Adobe Photoshop</h3>
+                                <p data-en="Professional photo editing and digital painting software used by designers worldwide." data-ur="پروفیشنل فوٹو ایڈیٹنگ اور ڈیجیٹل پینٹنگ سافٹ ویئر جو دنیا بھر کے ڈیزائنرز استعمال کرتے ہیں۔">Professional photo editing and digital painting software used by designers worldwide.</p>
+                                <a href="#" class="course-btn" data-course="photoshop" data-en="Learn More" data-ur="مزید جانیں">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card">
+                            <div class="course-img">
+                                <img src="https://images.unsplash.com/photo-1634942537034-2531766767d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Canva">
+                            </div>
+                            <div class="course-content">
+                                <h3 data-en="Canva" data-ur="کینوا">Canva</h3>
+                                <p data-en="User-friendly graphic design platform for creating stunning designs quickly and easily." data-ur="صارف دوست گرافک ڈیزائن پلیٹ فارم جو تیز اور آسانی سے شاندار ڈیزائن بنانے کے لیے ہے۔">User-friendly graphic design platform for creating stunning designs quickly and easily.</p>
+                                <a href="#" class="course-btn" data-course="canva" data-en="Learn More" data-ur="مزید جانیں">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MS Office -->
+                <div class="course-category">
+                    <h3 class="category-title" data-en="MS Office Versions" data-ur="ایم ایس آفس ورژن">MS Office Versions</h3>
+                    <div class="courses-grid">
+                        <div class="course-card">
+                            <div class="course-img">
+                                <img src="https://images.unsplash.com/photo-1593640495253-23196b27a87f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="MS Office 2007">
+                            </div>
+                            <div class="course-content">
+                                <h3 data-en="MS Office 2007" data-ur="ایم ایس آفس 2007">MS Office 2007</h3>
+                                <p data-en="Classic office suite with ribbon interface - Word, Excel, PowerPoint for basic office tasks." data-ur="کلاسک آفس سوٹ ربن انٹرفیس کے ساتھ - بنیادی آفس کاموں کے لیے ورڈ، ایکسل، پاورپوائنٹ۔">Classic office suite with ribbon interface - Word, Excel, PowerPoint for basic office tasks.</p>
+                                <a href="#" class="course-btn" data-course="office2007" data-en="Learn More" data-ur="مزید جانیں">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card">
+                            <div class="course-img">
+                                <img src="https://images.unsplash.com/photo-1593640495253-23196b27a87f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="MS Office 2010">
+                            </div>
+                            <div class="course-content">
+                                <h3 data-en="MS Office 2010" data-ur="ایم ایس آفس 2010">MS Office 2010</h3>
+                                <p data-en="Enhanced office suite with improved ribbon and Backstage view for better productivity." data-ur="بہتر پیداواریت کے لیے بہتر ربن اور بیک اسٹیج ویو کے ساتھ بہتر آفس سوٹ۔">Enhanced office suite with improved ribbon and Backstage view for better productivity.</p>
+                                <a href="#" class="course-btn" data-course="office2010" data-en="Learn More" data-ur="مزید جانیں">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card">
+                            <div class="course-img">
+                                <img src="https://images.unsplash.com/photo-1593640495253-23196b27a87f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="MS Office 2016">
+                            </div>
+                            <div class="course-content">
+                                <h3 data-en="MS Office 2016" data-ur="ایم ایس آفس 2016">MS Office 2016</h3>
+                                <p data-en="Modern office suite with cloud integration and collaborative features for teams." data-ur="کلاؤڈ انٹیگریشن اور ٹیموں کے لیے تعاون کی خصوصیات کے ساتھ جدید آفس سوٹ۔">Modern office suite with cloud integration and collaborative features for teams.</p>
+                                <a href="#" class="course-btn" data-course="office2016" data-en="Learn More" data-ur="مزید جانیں">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section class="courses" id="courses">
+            <div class="container">
+                <h2 class="section-title" data-en="Our Courses" data-ur="ہمارے کورسز">Our Courses</h2>
+
+                <!-- MS Office Courses -->
+                <div class="course-category">
+                    <h3 class="category-title" data-en="MS Office Courses" data-ur="ایم ایس آفس کورسز">MS Office Courses</h3>
+                    <div class="courses-grid">
+                        <div class="course-card">
+                            <div class="course-img">
+                                <img src="https://images.unsplash.com/photo-1586769852836-bc068d0b5c75?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="MS Word">
+                            </div>
+                            <div class="course-content">
+                                <h3 data-en="MS Word" data-ur="ایم ایس ورڈ">MS Word</h3>
+                                <p data-en="Learn document creation, formatting, and professional writing skills with MS Word." data-ur="ایم ایس ورڈ کے ساتھ دستاویز کی تخلیق، فارمیٹنگ، اور پیشہ ورانہ لکھنے کی مہارتیں سیکھیں۔">Learn document creation, formatting, and professional writing skills with MS Word.</p>
+                                <a href="#" class="course-btn" data-course="msword" data-en="Learn More" data-ur="مزید جانیں">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card">
+                            <div class="course-img">
+                                <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="MS Excel">
+                            </div>
+                            <div class="course-content">
+                                <h3 data-en="MS Excel" data-ur="ایم ایس ایکسل">MS Excel</h3>
+                                <p data-en="Master spreadsheets, formulas, data analysis, and visualization with MS Excel." data-ur="ایم ایس ایکسل کے ساتھ اسپریڈشیٹس، فارمولے، ڈیٹا تجزیہ، اور ویژولائزیشن میں مہارت حاصل کریں۔">Master spreadsheets, formulas, data analysis, and visualization with MS Excel.</p>
+                                <a href="#" class="course-btn" data-course="msexcel" data-en="Learn More" data-ur="مزید جانیں">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card">
+                            <div class="course-img">
+                                <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="MS PowerPoint">
+                            </div>
+                            <div class="course-content">
+                                <h3 data-en="MS PowerPoint" data-ur="ایم ایس پاورپوائنٹ">MS PowerPoint</h3>
+                                <p data-en="Create stunning presentations with animations, transitions, and design tools." data-ur="اینی میشنز، ٹرانزیشنز، اور ڈیزائن ٹولز کے ساتھ شاندار پریزنٹیشنز بنائیں۔">Create stunning presentations with animations, transitions, and design tools.</p>
+                                <a href="#" class="course-btn" data-course="mspowerpoint" data-en="Learn More" data-ur="مزید جانیں">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphic Design -->
+                <div class="course-category">
+                    <h3 class="category-title" data-en="Graphic Design" data-ur="گرافک ڈیزائن">Graphic Design</h3>
+                    <div class="courses-grid">
+                        <div class="course-card">
+                            <div class="course-img">
+                                <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Adobe Photoshop">
+                            </div>
+                            <div class="course-content">
+                                <h3 data-en="Adobe Photoshop" data-ur="ایڈوب فوٹوشاپ">Adobe Photoshop</h3>
+                                <p data-en="Professional photo editing and digital painting software used by designers worldwide." data-ur="پروفیشنل فوٹو ایڈیٹنگ اور ڈیجیٹل پینٹنگ سافٹ ویئر جو دنیا بھر کے ڈیزائنرز استعمال کرتے ہیں۔">Professional photo editing and digital painting software used by designers worldwide.</p>
+                                <a href="#" class="course-btn" data-course="photoshop" data-en="Learn More" data-ur="مزید جانیں">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card">
+                            <div class="course-img">
+                                <img src="https://images.unsplash.com/photo-1634942537034-2531766767d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Canva">
+                            </div>
+                            <div class="course-content">
+                                <h3 data-en="Canva" data-ur="کینوا">Canva</h3>
+                                <p data-en="User-friendly graphic design platform for creating stunning designs quickly and easily." data-ur="صارف دوست گرافک ڈیزائن پلیٹ فارم جو تیز اور آسانی سے شاندار ڈیزائن بنانے کے لیے ہے۔">User-friendly graphic design platform for creating stunning designs quickly and easily.</p>
+                                <a href="#" class="course-btn" data-course="canva" data-en="Learn More" data-ur="مزید جانیں">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web Development -->
+                <div class="course-category">
+                    <h3 class="category-title" data-en="Web Development" data-ur="ویب ڈویلپمنٹ">Web Development</h3>
+                    <div class="courses-grid">
+                        <div class="course-card">
+                            <div class="course-img">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/1200px-Visual_Studio_Code_1.35_icon.svg.png" alt="VS Code">
+                            </div>
+                            <div class="course-content">
+                                <h3 data-en="VS Code" data-ur="وی ایس کوڈ">VS Code</h3>
+                                <p data-en="Master the popular code editor with extensions, debugging, and Git integration." data-ur="ایکسٹینشنز، ڈیبگنگ، اور گٹ انٹیگریشن کے ساتھ مقبول کوڈ ایڈیٹر میں مہارت حاصل کریں۔">Master the popular code editor with extensions, debugging, and Git integration.</p>
+                                <a href="#" class="course-btn" data-course="vscode" data-en="Learn More" data-ur="مزید جانیں">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card">
+                            <div class="course-img">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/1200px-HTML5_logo_and_wordmark.svg.png" alt="HTML & CSS">
+                            </div>
+                            <div class="course-content">
+                                <h3 data-en="HTML & CSS" data-ur="ایچ ٹی ایم ایل اور سی ایس ایس">HTML & CSS</h3>
+                                <p data-en="Learn the fundamentals of web development with HTML and CSS." data-ur="ایچ ٹی ایم ایل اور سی ایس ایس کے ساتھ ویب ڈویلپمنٹ کی بنیادی باتیں سیکھیں۔">Learn the fundamentals of web development with HTML and CSS.</p>
+                                <a href="#" class="course-btn" data-course="htmlcss" data-en="Learn More" data-ur="مزید جانیں">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card">
+                            <div class="course-img">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png" alt="JavaScript">
+                            </div>
+                            <div class="course-content">
+                                <h3 data-en="JavaScript" data-ur="جاوا اسکرپٹ">JavaScript</h3>
+                                <p data-en="Master interactive web development with JavaScript programming." data-ur="جاوا اسکرپٹ پروگرامنگ کے ساتھ انٹرایکٹیو ویب ڈویلپمنٹ میں مہارت حاصل کریں۔">Master interactive web development with JavaScript programming.</p>
+                                <a href="#" class="course-btn" data-course="javascript" data-en="Learn More" data-ur="مزید جانیں">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Courses Section -->
+        <section class="courses" id="ai-courses" style="background-color: var(--background);">
+            <div class="container">
+                <h2 class="section-title" data-en="AI Courses" data-ur="AI کورسز">AI Courses</h2>
+
+                <div class="course-category">
+                    <h3 class="category-title" data-en="Artificial Intelligence Tools" data-ur="مصنوعی ذہانت کے ٹولز">Artificial Intelligence Tools</h3>
+                    <div class="courses-grid">
+                        <div class="course-card">
+                            <div class="course-img">
+                                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80" alt="DeepSeek">
+                            </div>
+                            <div class="course-content">
+                                <h3 data-en="DeepSeek" data-ur="ڈیپ سیک">DeepSeek</h3>
+                                <p data-en="Advanced AI platform for machine learning and deep learning applications." data-ur="مشین لرننگ اور ڈیپ لرننگ ایپلی کیشنز کے لیے جدید AI پلیٹ فارم۔">Advanced AI platform for machine learning and deep learning applications.</p>
+                                <a href="#" class="course-btn" data-course="deepseek" data-en="Learn More" data-ur="مزید جانیں">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card">
+                            <div class="course-img">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/1200px-Meta_Platforms_Inc._logo.svg.png" alt="Meta AI">
+                            </div>
+                            <div class="course-content">
+                                <h3 data-en="Meta AI" data-ur="میٹا AI">Meta AI</h3>
+                                <p data-en="Comprehensive AI platform for data analysis and predictive modeling." data-ur="ڈیٹا تجزیہ اور پیش گوئی ماڈلنگ کے لیے جامع AI پلیٹ فارم۔">Comprehensive AI platform for data analysis and predictive modeling.</p>
+                                <a href="#" class="course-btn" data-course="metaai" data-en="Learn More" data-ur="مزید جانیں">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card">
+                            <div class="course-img">
+                                <img src="https://images.unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Nano Banana">
+                            </div>
+                            <div class="course-content">
+                                <h3 data-en="Nano Banana" data-ur="نینو بنانا">Nano Banana</h3>
+                                <p data-en="Lightweight AI tool for quick prototyping and experimentation." data-ur="تیز پروٹوٹائپنگ اور تجربہ کے لیے ہلکا پھلکا AI ٹول۔">Lightweight AI tool for quick prototyping and experimentation.</p>
+                                <a href="#" class="course-btn" data-course="nanobanana" data-en="Learn More" data-ur="مزید جانیں">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card">
+                            <div class="course-img">
+                                <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Gemini">
+                            </div>
+                            <div class="course-content">
+                                <h3 data-en="Gemini" data-ur="جیمنی">Gemini</h3>
+                                <p data-en="AI-powered content generation and automation platform." data-ur="AI سے چلنے والا مواد کی تخلیق اور آٹومیشن پلیٹ فارم۔">AI-powered content generation and automation platform.</p>
+                                <a href="#" class="course-btn" data-course="gemini" data-en="Learn More" data-ur="مزید جانیں">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card">
+                            <div class="course-img">
+                                <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Sora">
+                            </div>
+                            <div class="course-content">
+                                <h3 data-en="Sora" data-ur="سورا">Sora</h3>
+                                <p data-en="Advanced AI video generation and editing platform." data-ur="جدید AI ویڈیو جنریشن اور ایڈیٹنگ پلیٹ فارم۔">Advanced AI video generation and editing platform.</p>
+                                <a href="#" class="course-btn" data-course="sora" data-en="Learn More" data-ur="مزید جانیں">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <h2 class="section-title" data-en="Contact With Me" data-ur="میرے ساتھ رابطہ کریں">Contact With Me</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3 data-en="Get In Touch" data-ur="رابطہ کریں">Get In Touch</h3>
+                        <p data-en="Have questions about our courses? Want to enroll or need more information? Feel free to reach out to us through any of the following methods." data-ur="کیا آپ کے ہمارے کورسز کے بارے میں سوالات ہیں؟ داخلہ لینا چاہتے ہیں یا مزید معلومات کی ضرورت ہے؟ براہ کرم درج ذیل طریقوں میں سے کسی کے ذریعے ہم سے رابطہ کریں۔">Have questions about our courses? Want to enroll or need more information? Feel free to reach out to us through any of the following methods.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 data-en="Phone" data-ur="فون">Phone</h4>
+                                    <p>03093838475</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <h4 data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</h4>
+                                    <p>03093838475</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 data-en="Email" data-ur="ای میل">Email</h4>
+                                    <p>shafeeqmagsi8@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <div class="logo">
+                            <div class="logo-img">SB</div>
+                            <div class="logo-text" data-en="Learn with Shafique" data-ur="شفیق کے ساتھ سیکھیں">Learn with Shafique</div>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-text">
+                        <p data-en="Learn with Shafique Baloch - Providing quality computer education for all skill levels." data-ur="شفیق بلوچ کے ساتھ سیکھیں - تمام مہارت کی سطحوں کے لیے معیاری کمپیوٹر تعلیم فراہم کرنا۔">Learn with Shafique Baloch - Providing quality computer education for all skill levels.</p>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/03093838475" class="social-link" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    
+                    <div class="copyright">
+                        <p data-en="&copy; 2023 Learn with Shafique Baloch. All Rights Reserved." data-ur="&copy; 2023 شفیق بلوچ کے ساتھ سیکھیں۔ تمام حقوق محفوظ ہیں۔">&copy; 2023 Learn with Shafique Baloch. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Course Details Modal -->
+    <div class="modal" id="courseModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div class="modal-header">
+                <h2 id="modalCourseTitle">Course Title</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modalCourseImage" src="" alt="Course Image">
+                </div>
+                <div id="modalCourseDescription">
+                    <!-- Course description will be inserted here -->
+                </div>
+                <div class="modal-contact-info">
+                    <h3 data-en="Contact for Enrollment" data-ur="داخلے کے لیے رابطہ کریں">Contact for Enrollment</h3>
+                    <p data-en="Interested in this course? Contact us directly through any of these methods:" data-ur="اس کورس میں دلچسپی ہے؟ براہ کرم ان طریقوں میں سے کسی کے ذریعے براہ راست ہم سے رابطہ کریں:">Interested in this course? Contact us directly through any of these methods:</p>
+                    <div class="contact-options">
+                        <a href="tel:03093838475" class="contact-option">
+                            <i class="fas fa-phone"></i>
+                            <span>03093838475</span>
+                        </a>
+                        <a href="https://wa.me/03093838475" class="contact-option" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            <span data-en="03093838475 (WhatsApp)" data-ur="03093838475 (واٹس ایپ)">03093838475 (WhatsApp)</span>
+                        </a>
+                        <a href="mailto:shafeeqmagsi8@gmail.com" class="contact-option">
+                            <i class="fas fa-envelope"></i>
+                            <span>shafeeqmagsi8@gmail.com</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Language Toggle Functionality
+        let currentLanguage = 'en';
+        const languageToggle = document.getElementById('languageToggle');
+        const languageText = document.getElementById('languageText');
+
+        languageToggle.addEventListener('click', function() {
+            currentLanguage = currentLanguage === 'en' ? 'ur' : 'en';
+            updateLanguage();
+        });
+
+        function updateLanguage() {
+            // Update all elements with data attributes
+            document.querySelectorAll('[data-en]').forEach(element => {
+                if (currentLanguage === 'en') {
+                    element.textContent = element.getAttribute('data-en');
+                    languageText.textContent = 'اردو';
+                } else {
+                    element.textContent = element.getAttribute('data-ur');
+                    languageText.textContent = 'English';
+                }
+            });
+
+            // Update direction for Urdu
+            if (currentLanguage === 'ur') {
+                document.body.style.direction = 'rtl';
+                document.body.style.textAlign = 'right';
+            } else {
+                document.body.style.direction = 'ltr';
+                document.body.style.textAlign = 'left';
+            }
+        }
+
+        // Check if user is already logged in
+        if (localStorage.getItem('isLoggedIn') === 'true') {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('mainWebsite').style.display = 'block';
+            updateProfileInfo();
+        }
+
+        // Check for dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('themeToggle').innerHTML = '<i class="fas fa-sun"></i>';
+        }
+
+        // Login Functionality
+        const loginForm = document.getElementById('loginForm');
+        const loginPage = document.getElementById('loginPage');
+        const mainWebsite = document.getElementById('mainWebsite');
+        const loginMessage = document.getElementById('loginMessage');
+        const signupPage = document.getElementById('signupPage');
+        const signupForm = document.getElementById('signupForm');
+        const showSignup = document.getElementById('showSignup');
+        const showLogin = document.getElementById('showLogin');
+        const googleLoginBtn = document.getElementById('googleLoginBtn');
+        const googleSignupBtn = document.getElementById('googleSignupBtn');
+        const guestLoginBtn = document.getElementById('guestLoginBtn');
+        const guestSignupBtn = document.getElementById('guestSignupBtn');
+        const profilePage = document.getElementById('profilePage');
+        const guestAccount = document.getElementById('guestAccount');
+        const backToHome = document.getElementById('backToHome');
+        const changePictureBtn = document.getElementById('changePictureBtn');
+        const profilePictureInput = document.getElementById('profilePictureInput');
+        const profilePageImg = document.getElementById('profilePageImg');
+        const profilePageName = document.getElementById('profilePageName');
+
+        // Toggle between login and signup
+        showSignup.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginPage.style.display = 'none';
+            signupPage.style.display = 'flex';
+        });
+
+        showLogin.addEventListener('click', function(e) {
+            e.preventDefault();
+            signupPage.style.display = 'none';
+            loginPage.style.display = 'flex';
+        });
+
+        // Google Login
+        googleLoginBtn.addEventListener('click', function() {
+            // Simulate Google authentication
+            const googleUser = {
+                firstName: 'Google',
+                lastName: 'User',
+                email: 'googleuser@example.com',
+                profilePic: 'https://ui-avatars.com/api/?name=Google+User&background=4285F4&color=fff',
+                memberSince: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+            };
+            
+            localStorage.setItem('userData', JSON.stringify(googleUser));
+            localStorage.setItem('isLoggedIn', 'true');
+            
+            loginPage.style.display = 'none';
+            mainWebsite.style.display = 'block';
+            updateProfileInfo();
+        });
+
+        // Google Signup
+        googleSignupBtn.addEventListener('click', function() {
+            // Simulate Google authentication
+            const googleUser = {
+                firstName: 'Google',
+                lastName: 'User',
+                email: 'googleuser@example.com',
+                profilePic: 'https://ui-avatars.com/api/?name=Google+User&background=4285F4&color=fff',
+                memberSince: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+            };
+            
+            localStorage.setItem('userData', JSON.stringify(googleUser));
+            localStorage.setItem('isLoggedIn', 'true');
+            
+            signupPage.style.display = 'none';
+            mainWebsite.style.display = 'block';
+            updateProfileInfo();
+        });
+
+        // Guest Login
+        guestLoginBtn.addEventListener('click', function() {
+            const guestUser = {
+                firstName: 'Guest',
+                lastName: 'User',
+                email: 'guest@example.com',
+                profilePic: 'https://ui-avatars.com/api/?name=Guest+User&background=8B5CF6&color=fff',
+                memberSince: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+            };
+            
+            localStorage.setItem('userData', JSON.stringify(guestUser));
+            localStorage.setItem('isLoggedIn', 'true');
+            
+            loginPage.style.display = 'none';
+            mainWebsite.style.display = 'block';
+            updateProfileInfo();
+        });
+
+        // Guest Signup
+        guestSignupBtn.addEventListener('click', function() {
+            const guestUser = {
+                firstName: 'Guest',
+                lastName: 'User',
+                email: 'guest@example.com',
+                profilePic: 'https://ui-avatars.com/api/?name=Guest+User&background=8B5CF6&color=fff',
+                memberSince: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+            };
+            
+            localStorage.setItem('userData', JSON.stringify(guestUser));
+            localStorage.setItem('isLoggedIn', 'true');
+            
+            signupPage.style.display = 'none';
+            mainWebsite.style.display = 'block';
+            updateProfileInfo();
+        });
+
+        // Guest Account from dropdown
+        guestAccount.addEventListener('click', function(e) {
+            e.preventDefault();
+            const guestUser = {
+                firstName: 'Guest',
+                lastName: 'User',
+                email: 'guest@example.com',
+                profilePic: 'https://ui-avatars.com/api/?name=Guest+User&background=8B5CF6&color=fff',
+                memberSince: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+            };
+            
+            localStorage.setItem('userData', JSON.stringify(guestUser));
+            localStorage.setItem('isLoggedIn', 'true');
+            
+            updateProfileInfo();
+            dropdownMenu.classList.remove('show');
+        });
+
+        // Login form submission
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple validation
+            if (email && password) {
+                // Save user data
+                const userData = {
+                    firstName: 'User',
+                    lastName: 'Name',
+                    email: email,
+                    profilePic: `https://ui-avatars.com/api/?name=User+Name&background=random`,
+                    memberSince: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+                };
+                localStorage.setItem('userData', JSON.stringify(userData));
+                
+                // Show success message
+                loginMessage.classList.add('show');
+                
+                // Hide login page and show main website after delay
+                setTimeout(() => {
+                    loginPage.style.display = 'none';
+                    mainWebsite.style.display = 'block';
+                    // Store login status in localStorage
+                    localStorage.setItem('isLoggedIn', 'true');
+                    updateProfileInfo();
+                }, 1500);
+            } else {
+                alert('Please fill in all fields');
+            }
+        });
+
+        // Signup form submission
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('signupFirstName').value;
+            const lastName = document.getElementById('signupLastName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            
+            // Simple validation
+            if (firstName && lastName && email && password) {
+                // Save user data
+                const userData = {
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    profilePic: `https://ui-avatars.com/api/?name=${firstName}+${lastName}&background=random`,
+                    memberSince: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+                };
+                localStorage.setItem('userData', JSON.stringify(userData));
+                
+                // Hide signup page and show main website
+                signupPage.style.display = 'none';
+                mainWebsite.style.display = 'block';
+                // Store login status in localStorage
+                localStorage.setItem('isLoggedIn', 'true');
+                updateProfileInfo();
+            } else {
+                alert('Please fill in all fields');
+            }
+        });
+
+        // Update profile information
+        function updateProfileInfo() {
+            const userData = JSON.parse(localStorage.getItem('userData'));
+            if (userData) {
+                document.getElementById('profileImg').src = userData.profilePic;
+                document.getElementById('profileName').textContent = `${userData.firstName} ${userData.lastName}`;
+                document.getElementById('profilePageImg').src = userData.profilePic;
+                document.getElementById('profilePageName').textContent = `${userData.firstName} ${userData.lastName}`;
+                document.getElementById('profileFullName').textContent = `${userData.firstName} ${userData.lastName}`;
+                document.getElementById('profileEmail').textContent = userData.email;
+                document.getElementById('profileMemberSince').textContent = userData.memberSince;
+            }
+        }
+
+        // Back to Home from Profile
+        backToHome.addEventListener('click', function(e) {
+            e.preventDefault();
+            profilePage.style.display = 'none';
+            mainWebsite.style.display = 'block';
+        });
+
+        // Change Profile Picture
+        changePictureBtn.addEventListener('click', function() {
+            profilePictureInput.click();
+        });
+
+        profilePictureInput.addEventListener('change', function(e) {
+            if (e.target.files && e.target.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const newProfilePic = e.target.result;
+                    document.getElementById('profilePageImg').src = newProfilePic;
+                    document.getElementById('profileImg').src = newProfilePic;
+                    
+                    // Update in localStorage
+                    const userData = JSON.parse(localStorage.getItem('userData'));
+                    userData.profilePic = newProfilePic;
+                    localStorage.setItem('userData', JSON.stringify(userData));
+                }
+                
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+        
+        // Logo click to go home
+        const logo = document.getElementById('logo');
+        logo.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu after clicking a link
+                if (navMenu.classList.contains('show')) {
+                    navMenu.classList.remove('show');
+                }
+            });
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                localStorage.setItem('darkMode', 'true');
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.setItem('darkMode', 'false');
+            }
+        });
+
+        // Profile Dropdown
+        const profileBtn = document.getElementById('profileBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        
+        profileBtn.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('show');
+        });
+        
+        // Close dropdown when clicking outside
+        window.addEventListener('click', (e) => {
+            if (!e.target.matches('.profile-btn') && !e.target.closest('.profile-btn')) {
+                if (dropdownMenu.classList.contains('show')) {
+                    dropdownMenu.classList.remove('show');
+                }
+            }
+        });
+        
+        // Logout functionality
+        const logoutBtn = document.getElementById('logoutBtn');
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.setItem('isLoggedIn', 'false');
+            mainWebsite.style.display = 'none';
+            profilePage.style.display = 'none';
+            loginPage.style.display = 'flex';
+            dropdownMenu.classList.remove('show');
+        });
+
+        // Add Account functionality
+        const addAccount = document.getElementById('addAccount');
+        addAccount.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Simulate adding another account
+            localStorage.setItem('isLoggedIn', 'false');
+            mainWebsite.style.display = 'none';
+            profilePage.style.display = 'none';
+            loginPage.style.display = 'flex';
+            dropdownMenu.classList.remove('show');
+        });
+
+        // Course Details Modal
+        const courseModal = document.getElementById('courseModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalCourseTitle = document.getElementById('modalCourseTitle');
+        const modalCourseImage = document.getElementById('modalCourseImage');
+        const modalCourseDescription = document.getElementById('modalCourseDescription');
+        
+        // Course data
+        const courses = {
+            'photoshop': {
+                title: 'Adobe Photoshop Course',
+                image: 'https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80',
+                description: '<p>Our comprehensive Adobe Photoshop course covers everything from basic photo editing to advanced digital art creation.</p><h4>What You Will Learn:</h4><ul><li>Photo editing and retouching techniques</li><li>Layer management and masking</li><li>Color correction and adjustment layers</li><li>Digital painting and illustration</li><li>Working with filters and effects</li><li>Creating graphics for web and print</li></ul><p>Perfect for photographers, designers, and anyone interested in digital art creation.</p>'
+            },
+            'canva': {
+                title: 'Canva Design Course',
+                image: 'https://images.unsplash.com/photo-1634942537034-2531766767d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+                description: '<p>Master Canva to create stunning designs for social media, presentations, marketing materials, and more.</p><h4>What You Will Learn:</h4><ul><li>Canva interface and tools overview</li><li>Creating social media graphics</li><li>Designing presentations and reports</li><li>Working with templates and brand kits</li><li>Collaboration features for teams</li><li>Advanced design techniques</li></ul><p>Ideal for social media managers, marketers, small business owners, and anyone who needs to create professional designs quickly.</p>'
+            },
+            'office2007': {
+                title: 'MS Office 2007 Course',
+                image: 'https://images.unsplash.com/photo-1593640495253-23196b27a87f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80',
+                description: '<p>Learn the classic MS Office 2007 suite with its revolutionary ribbon interface.</p><h4>What You Will Learn:</h4><ul><li>MS Word 2007: Document creation and formatting</li><li>MS Excel 2007: Spreadsheets and basic formulas</li><li>MS PowerPoint 2007: Presentation creation</li><li>MS Outlook 2007: Email and calendar management</li><li>Ribbon interface navigation</li><li>Basic office automation</li></ul><p>Perfect for users working with legacy systems or preferring the classic Office interface.</p>'
+            },
+            'office2010': {
+                title: 'MS Office 2010 Course',
+                image: 'https://images.unsplash.com/photo-1593640495253-23196b27a87f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80',
+                description: '<p>Master MS Office 2010 with enhanced features and improved user interface.</p><h4>What You Will Learn:</h4><ul><li>Enhanced ribbon interface features</li><li>Backstage view for file management</li><li>Improved collaboration tools</li><li>Advanced formatting in Word</li><li>Data analysis in Excel</li><li>Animation features in PowerPoint</li></ul><p>Great for office professionals and students using this popular Office version.</p>'
+            },
+            'office2016': {
+                title: 'MS Office 2016 Course',
+                image: 'https://images.unsplash.com/photo-1593640495253-23196b27a87f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80',
+                description: '<p>Learn the modern MS Office 2016 with cloud integration and collaborative features.</p><h4>What You Will Learn:</h4><ul><li>Cloud integration with OneDrive</li><li>Real-time collaboration features</li><li>Tell Me feature for quick help</li><li>Smart Lookup for research</li><li>Improved data analysis in Excel</li><li>Modern design features in PowerPoint</li></ul><p>Ideal for professionals working in team environments and cloud-based workflows.</p>'
+            },
+            'msword': {
+                title: 'MS Word Course',
+                image: 'https://images.unsplash.com/photo-1586769852836-bc068d0b5c75?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+                description: '<p>Master document creation and formatting with Microsoft Word.</p><h4>What You Will Learn:</h4><ul><li>Document creation and formatting</li><li>Styles and templates</li><li>Tables and graphics integration</li><li>Mail merge and automation</li><li>Collaboration and review features</li><li>Advanced formatting techniques</li></ul><p>Perfect for students, office professionals, and anyone who needs to create professional documents.</p>'
+            },
+            'msexcel': {
+                title: 'MS Excel Course',
+                image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80',
+                description: '<p>Master data analysis and visualization with Microsoft Excel.</p><h4>What You Will Learn:</h4><ul><li>Spreadsheet creation and formatting</li><li>Formulas and functions</li><li>Data analysis and pivot tables</li><li>Charts and graphs</li><li>Data validation and protection</li><li>Advanced data analysis techniques</li></ul><p>Ideal for analysts, accountants, and anyone working with data.</p>'
+            },
+            'mspowerpoint': {
+                title: 'MS PowerPoint Course',
+                image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+                description: '<p>Create stunning presentations with Microsoft PowerPoint.</p><h4>What You Will Learn:</h4><ul><li>Presentation creation and design</li><li>Slide layouts and templates</li><li>Animations and transitions</li><li>Multimedia integration</li><li>Presenter tools and rehearsal</li><li>Advanced design techniques</li></ul><p>Perfect for students, teachers, and business professionals.</p>'
+            },
+            'vscode': {
+                title: 'VS Code Mastery Course',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/1200px-Visual_Studio_Code_1.35_icon.svg.png',
+                description: '<p>Become proficient with Visual Studio Code, the most popular code editor for web development.</p><h4>What You Will Learn:</h4><ul><li>VS Code interface and customization</li><li>Essential extensions for web development</li><li>Debugging and testing features</li><li>Git integration and version control</li><li>Terminal and command line usage</li><li>Productivity tips and shortcuts</li></ul><p>Perfect for web developers, programmers, and anyone working with code.</p>'
+            },
+            'htmlcss': {
+                title: 'HTML & CSS Course',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/1200px-HTML5_logo_and_wordmark.svg.png',
+                description: '<p>Learn the fundamentals of web development with HTML and CSS.</p><h4>What You Will Learn:</h4><ul><li>HTML structure and semantics</li><li>CSS styling and layout</li><li>Responsive web design</li><li>CSS frameworks and preprocessors</li><li>Web accessibility standards</li><li>Browser compatibility</li></ul><p>Ideal for beginners looking to start their web development journey.</p>'
+            },
+            'javascript': {
+                title: 'JavaScript Course',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png',
+                description: '<p>Master interactive web development with JavaScript programming.</p><h4>What You Will Learn:</h4><ul><li>JavaScript fundamentals</li><li>DOM manipulation</li><li>Event handling</li><li>Asynchronous programming</li><li>ES6+ features</li><li>Modern JavaScript frameworks</li></ul><p>Perfect for front-end developers and anyone wanting to add interactivity to websites.</p>'
+            },
+            'deepseek': {
+                title: 'DeepSeek AI Course',
+                image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80',
+                description: '<p>Explore advanced AI and machine learning capabilities with DeepSeek platform.</p><h4>What You Will Learn:</h4><ul><li>DeepSeek platform overview</li><li>Machine learning model training</li><li>Natural language processing</li><li>Computer vision applications</li><li>AI model deployment</li><li>Advanced AI algorithms</li></ul><p>Ideal for data scientists, AI enthusiasts, and developers interested in cutting-edge AI technology.</p>'
+            },
+            'metaai': {
+                title: 'Meta AI Course',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/1200px-Meta_Platforms_Inc._logo.svg.png',
+                description: '<p>Master comprehensive AI data analysis and predictive modeling with Meta AI.</p><h4>What You Will Learn:</h4><ul><li>Data preprocessing and cleaning</li><li>Predictive modeling techniques</li><li>Statistical analysis with AI</li><li>Data visualization and interpretation</li><li>Automated machine learning</li><li>Business intelligence applications</li></ul><p>Perfect for analysts, researchers, and business professionals working with data.</p>'
+            },
+            'nanobanana': {
+                title: 'Nano Banana AI Course',
+                image: 'https://images.unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+                description: '<p>Learn lightweight AI prototyping and experimentation with Nano Banana tool.</p><h4>What You Will Learn:</h4><ul><li>Rapid AI prototyping techniques</li><li>Lightweight model development</li><li>Experimental AI applications</li><li>Quick deployment strategies</li><li>Resource-efficient AI solutions</li><li>Prototype testing and validation</li></ul><p>Great for startups, innovators, and developers needing quick AI solutions.</p>'
+            },
+            'gemini': {
+                title: 'Gemini AI Course',
+                image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80',
+                description: '<p>Master AI-powered content generation and automation with Gemini platform.</p><h4>What You Will Learn:</h4><ul><li>AI content generation techniques</li><li>Automated workflow creation</li><li>Natural language generation</li><li>Content optimization with AI</li><li>Multi-platform content distribution</li><li>AI-powered marketing automation</li></ul><p>Ideal for content creators, marketers, and businesses looking to automate content production.</p>'
+            },
+            'sora': {
+                title: 'Sora AI Course',
+                image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80',
+                description: '<p>Master advanced AI video generation and editing with Sora platform.</p><h4>What You Will Learn:</h4><ul><li>AI video generation techniques</li><li>Video editing with AI assistance</li><li>Automated video content creation</li><li>Video enhancement and optimization</li><li>Multi-format video production</li><li>AI-powered video marketing</li></ul><p>Perfect for video creators, marketers, and businesses looking to leverage AI for video content.</p>'
+            }
+        };
+        
+        // Open modal when course button is clicked
+        document.querySelectorAll('.course-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const courseId = this.getAttribute('data-course');
+                
+                if (courses[courseId]) {
+                    modalCourseTitle.textContent = courses[courseId].title;
+                    modalCourseImage.src = courses[courseId].image;
+                    modalCourseImage.alt = courses[courseId].title;
+                    modalCourseDescription.innerHTML = courses[courseId].description;
+                    
+                    courseModal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+        
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            courseModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === courseModal) {
+                courseModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
